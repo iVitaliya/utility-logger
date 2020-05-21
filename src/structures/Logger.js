@@ -10,13 +10,25 @@ module.exports = class BaseLogger extends console {
 		super(data);
 
 		this.name = data.name ? data.name : 'Logger';
-		this.color = data.color ? data.color : '#fcfcfc';
-		this.format = data.format ? data.format : 'ddddd, hh:mm A';
+		this.format = data.format ? data.format : 'dddd, hh:mm A';
 		this.date = data.date ? moment(data.date).format(data.format) : moment(Date.now()).format(data.format);
     }
     
-    data() {
-        return this.data;
+    /**
+     * @param {string} type - Type to fetch: name, color, format, date.
+     */
+    data(type) {
+        switch (type.toLowerCase()) {
+			case 'name':
+                this.name;
+                break;
+			case 'format':
+				this.format;
+				break;
+			case 'date':
+				this.date;
+				break;
+		}
     }
 }
 

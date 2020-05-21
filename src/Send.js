@@ -23,48 +23,46 @@ class Send extends BaseLogger {
         if (typeof del !== 'boolean' || !del) del = false;
         if (typeof type !== 'string' || !type) type = 'log';
         if (typeof format !== 'string' || !format) format = 'none';
-        
-        BaseLogger.data('')
 
         switch (type.toLowerCase()) {
             case 'log':
                 switch (format.toLowerCase()) {
                     case 'none':
                         if (!del) {
-                            console.log(chalk.hex(color)(msg));
+                            console.log(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color)(msg)); 
+                            console.log(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'bold':
                         if (!del) {
-                            console.log(chalk.hex(color).bold(msg));
+                            console.log(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).bold(msg)); 
+                            console.log(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'underline':
                         if (!del) {
-                            console.log(chalk.hex(color).underline(msg));
+                            console.log(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).underline(msg)); 
+                            console.log(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'strikethrough':
                         if (!del) {
-                            console.log(chalk.hex(color).strikethrough(msg));
+                            console.log(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).strikethrough(msg)); 
+                            console.log(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
