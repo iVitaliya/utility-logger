@@ -74,40 +74,130 @@ class Send extends BaseLogger {
                 switch (format.toLowerCase()) {
                     case 'none':
                         if (!del) {
-                            console.log(chalk.hex(color)(msg));
+                            console.debug(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color)(msg)); 
+                            console.debug(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'bold':
                         if (!del) {
-                            console.log(chalk.hex(color).bold(msg));
+                            console.debug(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).bold(msg)); 
+                            console.debug(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'underline':
                         if (!del) {
-                            console.log(chalk.hex(color).underline(msg));
+                            console.debug(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).underline(msg)); 
+                            console.debug(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
 
                     case 'strikethrough':
                         if (!del) {
-                            console.log(chalk.hex(color).strikethrough(msg));
+                            console.debug(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`));
                         } else {
                             console.clear();
-                            console.log(chalk.hex(color).strikethrough(msg)); 
+                            console.debug(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+                }
+
+                break;
+
+            case 'warn':
+                switch (format.toLowerCase()) {
+                    case 'none':
+                        if (!del) {
+                            console.warn(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.warn(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'bold':
+                        if (!del) {
+                            console.warn(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.warn(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'underline':
+                        if (!del) {
+                            console.warn(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.warn(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'strikethrough':
+                        if (!del) {
+                            console.warn(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.warn(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+                }
+
+                break;
+
+            case 'error':
+                switch (format.toLowerCase()) {
+                    case 'none':
+                        if (!del) {
+                            console.error(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.error(chalk.hex(color)(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'bold':
+                        if (!del) {
+                            console.error(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.error(chalk.hex(color).bold(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'underline':
+                        if (!del) {
+                            console.error(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.error(chalk.hex(color).underline(`[${this.name}] (${this.date}): ${msg}`)); 
+                        };
+
+                        break;
+
+                    case 'strikethrough':
+                        if (!del) {
+                            console.error(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`));
+                        } else {
+                            console.clear();
+                            console.error(chalk.hex(color).strikethrough(`[${this.name}] (${this.date}): ${msg}`)); 
                         };
 
                         break;
