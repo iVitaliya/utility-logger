@@ -1,0 +1,29 @@
+{
+  "name": "utility-logger",
+  "version": "1.0.1",
+  "description": "A Utility console logger made for JavaScript projects",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iAmMochi/utility-logger.git"
+  },
+  "keywords": [
+    "Logger",
+    "Logs",
+    "Utils",
+    "Utilities"
+  ],
+  "author": "Mochi & Cassie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iAmMochi/utility-logger/issues"
+  },
+  "homepage": "https://github.com/iAmMochi/utility-logger#readme",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "moment": "^2.26.0"
+  }
+}
