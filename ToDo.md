@@ -1,5 +1,6 @@
 # To do list
 ---------------------------------
 
-
-wddwadwd
+[x] Send function
+[x] Clear function
+[x] 
