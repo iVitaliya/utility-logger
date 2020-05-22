@@ -1,9 +1,5 @@
-const logger = require("./src/structures/Logger.js");
+const stream = require('stream');
+const fs = require('fs');
 
-const Logger = new logger({
-	name: 'Test Logger',
-	format: 'dddd, hh:mm A',
-	date: Date.now()
-})
-
-console.log(Logger);
+stream.Writable()
+fs.createWriteStream(`${__dirname}/./structures/Logger`);
