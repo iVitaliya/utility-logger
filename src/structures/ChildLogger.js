@@ -1,9 +1,11 @@
 // Packages...
-const moment = require("moment");
-const { Console } = require("console");
-const { Stream } = require("stream");
+const moment = require('moment');
+const chalk = require('chalk');
 
-module.exports = class BaseLogger extends Console {
+// Files...
+const ParentLogger = require('../transport/Logger.js');
+
+module.exports = class ChildLogger extends ParentLogger {
 
   /**
    * @param {Object} [data={}] - Options for the Logger instance...
@@ -12,25 +14,6 @@ module.exports = class BaseLogger extends Console {
 		super(data);
 
 		this.name = data.name ? data.name : 'Logger';
-		this.format = data.format ? data.format : 'dddd, hh:mm A';
-		this.date = data.date ? moment(data.date).format(data.format) : moment(Date.now()).format(data.format);
-    }
-    
-    /**
-     * @param {string} type - Type to fetch: name, color, format, date.
-     */
-    data(type) {
-        switch (type.toLowerCase()) {
-			case 'name':
-                this.name;
-                break;
-			case 'format':
-				this.format;
-				break;
-			case 'date':
-				this.date;
-				break;
-		}
     }
 }
 

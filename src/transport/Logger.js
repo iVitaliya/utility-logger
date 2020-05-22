@@ -1,7 +1,7 @@
 // Packages...
 const os = require('os');
-const { Stream } = require("stream");
-const isStream = require("is-stream");
+const { Stream } = require('stream');
+const moment = require('moment');
 
 
 /**
@@ -19,8 +19,10 @@ module.exports = class LoggerConsole extends Stream {
 		super(data);
 
 		// Expose the name of the LoggerConsole on the prototype.
-		this.name = data.name || 'Logger Console';
+		this.name = data.name || 'Utility Logger';
 		this.eol = data.eol || os.EOL;
+		this.format = data.format ? data.format : 'dddd, hh:mm A';
+		this.date = data.date ? moment(data.date).format(data.format) : moment(Date.now()).format(data.format);
 
 		this.setMaxListeners(30);
 	}
@@ -35,18 +37,17 @@ module.exports = class LoggerConsole extends Stream {
 		setImmediate(() => this.emit('Logged', info));
 
 			if (process.stderr) {
-				process.stderr.write(`${info} ${this.eol}`);
-			} else {
-				console.error(info);
-			}
-
-			if (process.stdout) {
+				process.stderr.write(`[${this.name}] (${this.date}) : ${info} ${this.eol}`);
+			} else if (!process.stderr && process.stdout) {
 				process.stdout.write(`${info} ${this.eol}`);
+			}else {
+				console.error(info);
 			}
 
 			if (callback) {
 				callback();
 			}
-	
+
+			return;
 	}
 }

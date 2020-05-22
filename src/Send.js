@@ -11,7 +11,8 @@ module.exports = class Send extends BaseLogger {
         super(data);
     }
 
-    /**
+
+	 /**
      * @param {string} color - The color the logger needs to be...
      * @param {string} msg - The message that needs to be sent...
      * @param {boolean} del - If the console needs to clear itself first...
