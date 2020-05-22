@@ -4,7 +4,7 @@ const moment = require('moment');
 const stream = require('stream');
 
 // Files...
-const BaseLogger = require('./structures/Logger.js');
+const BaseLogger = require('./structures/ChildLogger.js');
 
 module.exports = class Send extends BaseLogger {
     constructor(data = {}) {
@@ -211,7 +211,7 @@ module.exports = class Send extends BaseLogger {
 
 /* 
 send
-console.send('<color>', 'text')
+Logger.send('<color>', 'text')
 
 output
 [Logger | Type | ] message...
