@@ -17,5 +17,36 @@ module.exports = class LoggerConsole extends Stream {
    */
 	constructor(data = {}) {
 		super(data);
+
+		// Expose the name of the LoggerConsole on the prototype.
+		this.name = data.name || 'Logger Console';
+		this.eol = data.eol || os.EOL;
+
+		this.setMaxListeners(30);
+	}
+
+	/**
+	 * Logging method of Utility Logger.
+	 * @param {Object} - Some info...
+	 * @param {Function} - callback...
+	 * @returns {undefined}
+	 */
+	send(info, callback) {
+		setImmediate(() => this.emit('Logged', info));
+
+			if (process.stderr) {
+				process.stderr.write(`${info} ${this.eol}`);
+			} else {
+				console.error(info);
+			}
+
+			if (process.stdout) {
+				process.stdout.write(`${info} ${this.eol}`);
+			}
+
+			if (callback) {
+				callback();
+			}
+	
 	}
 }
