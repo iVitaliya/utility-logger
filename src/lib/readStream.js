@@ -1,25 +1,15 @@
 // Packages...
 const stream = require('stream').Readable;
 const util = require('util');
+const fs = require('fs');
 
 
-var readStream = (data) => {
-	stream.call(this, { objectMode: true });
+const readStream = (data, encoding) => {
+	const stream = fs.createReadStream(data, encoding);
 
-	this.data = data;
-	this.curIndex = 0;
-}
-
-util.inherits(readStream, stream);
-
-stream.prototype._read = function() {
-	if (this.curIndex === this.data.length) {
-    	return this.push(null);
-  	}
-
-	var data = this.data[this.curIndex];
-	console.log(`Read:			${JSON.stringify(data)}`);
-	this.push(data);
+	stream.on('data', function(chunk) {
+		console.log(`New chunk recieved:\n${chunk}`);
+	})
 }
 
 module.exports = readStream;
