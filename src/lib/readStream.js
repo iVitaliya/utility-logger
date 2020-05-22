@@ -3,11 +3,10 @@ const stream = require('stream').Readable;
 const util = require('util');
 const fs = require('fs');
 
-
 const readStream = (data, encoding) => {
-	const stream = fs.createReadStream(data, encoding);
+	const rStream = fs.createReadStream(data, encoding);
 
-	stream.on('data', function(chunk) {
+	rStream.on('data', function(chunk) {
 		console.log(`New chunk recieved:\n${chunk}`);
 	})
 }
