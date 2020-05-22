@@ -7,4 +7,6 @@ const Logger = new logger({
 	date: Date.now()
 });
 
-Logger.send(`Hi there guys, this is a customazible logger package.`);
+Logger.send(logger.name);
+
+Logger.clear();

@@ -13,7 +13,7 @@ module.exports = class ChildLogger extends ParentLogger {
 	constructor(data = {}) {
 		super(data);
 
-		this.name = data.name ? data.name : 'Logger';
+		this.name = data.name
     }
 }
 
