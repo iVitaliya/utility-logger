@@ -1,0 +1,17 @@
+[
+	{
+ 		"id": 0,
+		"name": "object 0",
+		"value": 2
+	},
+	{
+		"id": 1,
+		"name":"object 1",
+		"value": 0
+	},
+	{
+		"id": 2,
+		"name":"object 2",
+		"value": 4
+	}
+]
