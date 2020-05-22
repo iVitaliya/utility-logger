@@ -1,10 +1,11 @@
 // Packages...
 const moment = require("moment");
+const { Console } = require("console");
 
-module.exports = class BaseLogger extends console {
+module.exports = class BaseLogger extends Console {
 
   /**
-   * @param {!Object} [data={}] - Options for the Logger instance...
+   * @param {Object} [data={}] - Options for the Logger instance...
    */
 	constructor(data = {}) {
 		super(data);
