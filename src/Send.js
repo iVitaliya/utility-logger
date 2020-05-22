@@ -1,13 +1,14 @@
 // Packages...
 const chalk = require('chalk');
 const moment = require('moment');
+const stream = require('stream');
 
 // Files...
-const BaseLogger = require("./structures/Logger.js");
+const BaseLogger = require('./structures/Logger.js');
 
-class Send extends BaseLogger {
+module.exports = class Send extends BaseLogger {
     constructor(data = {}) {
-        super();
+        super(data);
     }
 
     /**

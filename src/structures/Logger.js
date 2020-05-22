@@ -1,6 +1,7 @@
 // Packages...
 const moment = require("moment");
 const { Console } = require("console");
+const { Stream } = require("stream");
 
 module.exports = class BaseLogger extends Console {
 
