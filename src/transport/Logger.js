@@ -50,4 +50,15 @@ module.exports = class LoggerConsole extends Stream {
 
 			return;
 	}
+
+	/**
+	 * Clear method of Utility Logger.
+	 */
+	clear() {
+	if (process.stderr) {
+			process.stderr.clearScreenDown();
+	} else if (!process.stderr && process.stdout) {
+		process.stdout.clearScreenDown();
+	}
+	}
 }
