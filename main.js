@@ -9,8 +9,8 @@ const Logger = new logger({
 });
 
 const x = {
-	data: 'none',
-	number: 0
+	value: 20,
+	id: 0
 }
 
 Logger.send(x);

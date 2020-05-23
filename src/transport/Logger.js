@@ -40,7 +40,7 @@ module.exports = class LoggerConsole extends Stream {
 					info = `[ Type: Function - Name: ${info.name} ]`;
 					break;
 				case 'object':
-					info = `[ Type: Object - Name: ${info.name} ]`;
+					info = `[ Type: Object - Name: ${info.variable} ] ${JSON.stringify(info)}`;
 					break;
 			}
 
