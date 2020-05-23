@@ -12,9 +12,15 @@ module.exports = class ChildLogger extends ParentLogger {
    */
 	constructor(data = {}) {
 		super(data);
-
 		this.name = data.name
     }
+
+	/**
+	 * Clear method of Utility Logger.
+	 */
+	clear() {
+		process.stderr.destroy();
+	}
 }
 
 /* new Console({ 

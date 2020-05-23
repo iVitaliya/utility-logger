@@ -34,10 +34,18 @@ module.exports = class LoggerConsole extends Stream {
 	 * @returns {undefined}
 	 */
 	send(info, callback) {
-		setImmediate(() => this.emit('Logged', info));
+
+			switch (typeof info) {
+				case 'function':
+					info = `[ Type: Function - Name: ${info.name} ]`;
+					break;
+				case 'object':
+					info = `[ Type: Object - Name: ${info.name} ]`;
+					break;
+			}
 
 			if (process.stderr) {
-				process.stderr.write(`[${this.name}] (${this.date}) : ${info} ${this.eol}`);
+				process.stderr.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
 			} else if (!process.stderr && process.stdout) {
 				process.stdout.write(`${info} ${this.eol}`);
 			}else {
@@ -49,15 +57,5 @@ module.exports = class LoggerConsole extends Stream {
 			}
 
 			return;
-	}
-
-	/**
-	 * Clear method of Utility Logger.
-	 */
-	clear() {
-		if (process.stderr) {
-			process.stderr.unpipe();
-			return this;
-		}
 	}
 }

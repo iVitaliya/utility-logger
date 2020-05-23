@@ -1,5 +1,6 @@
 // Files...
 const logger = require('./src/structures/ChildLogger.js');
+const { Console } = require('console');
 
 const Logger = new logger({
 	name: 'Test Logger',
@@ -7,6 +8,9 @@ const Logger = new logger({
 	date: Date.now()
 });
 
-Logger.send(logger.name);
+const x = {
+	data: 'none',
+	number: 0
+}
 
-Logger.clear();
+Logger.send(x);
