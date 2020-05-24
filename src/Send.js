@@ -1,7 +1,5 @@
 // Packages...
 const chalk = require('chalk');
-const moment = require('moment');
-const stream = require('stream');
 
 // Files...
 const BaseLogger = require('./structures/ChildLogger.js');

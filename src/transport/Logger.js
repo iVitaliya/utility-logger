@@ -3,12 +3,6 @@ const os = require('os');
 const { Stream } = require('stream');
 const moment = require('moment');
 
-
-/**
- * Outputting to the console.
- * @type {Console}
- * @extends {Stream}
- */
 module.exports = class LoggerConsole extends Stream {
   /**
    * Constructor function for the Console transport object responsible for
