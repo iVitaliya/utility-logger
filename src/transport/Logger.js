@@ -2,6 +2,7 @@
 const os = require('os');
 const { Stream } = require('stream');
 const moment = require('moment');
+const path = require('path');
 
 module.exports = class LoggerConsole extends Stream {
   /**
@@ -17,6 +18,7 @@ module.exports = class LoggerConsole extends Stream {
 		this.eol = data.eol || os.EOL;
 		this.format = data.format ? data.format : 'dddd, hh:mm A';
 		this.date = data.date ? moment(data.date).format(data.format) : moment(Date.now()).format(data.format);
+		this.file = data.file || '';
 
 		this.setMaxListeners(30);
 	}
@@ -48,15 +50,23 @@ module.exports = class LoggerConsole extends Stream {
 				case 'boolean':
 					info = `[ Type: Boolean ] ${info}`;
 					break;
-				case 'symbol': 
+				case 'symbol':
 					info = `[ Type: Symbol ] ${info.toString()} `;
 					break;
 			}
 
 			if (process.stderr) {
-				process.stderr.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				if (this.file) {
+					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				} else {
+					process.stderr.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				}
 			} else if (!process.stderr && process.stdout) {
-				process.stdout.write(`${info} ${this.eol}`);
+				if (this.file) {
+					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				} else {
+					process.stdout.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				}
 			}else {
 				console.error(info);
 			}

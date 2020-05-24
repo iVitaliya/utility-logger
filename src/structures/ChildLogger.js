@@ -8,7 +8,9 @@ const ParentLogger = require('../transport/Logger.js');
 module.exports = class ChildLogger extends ParentLogger {
 
   /**
-   * @param {Object} [data={}] - Options for the Logger instance...
+   * Constructor function for the Console transport object responsible for
+   * persisting log messages and metadata to a terminal or TTY.
+   * @param {!Object} [data={}] - Options for this instance.
    */
 	constructor(data = {}) {
 		super(data);
