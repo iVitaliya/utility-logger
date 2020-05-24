@@ -14,7 +14,7 @@ module.exports = class ChildLogger extends ParentLogger {
    */
 	constructor(data = {}) {
 		super(data);
-		this.name = data.name
+		this.name = data.name || 'Utility Logger';
     }
 
 	/**

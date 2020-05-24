@@ -6,9 +6,11 @@ const logger = require('./src/structures/ChildLogger.js');
 const { Console } = require('console');
 
 const Logger = new logger({
-	name: 'Test Logger',
-	format: 'hh:mm A',
-	date: Date.now(),
+	time: true,
+	timeFormat: 'hh:mm A',
+	dateDisplay: Date.now(),
+	showFile: true,
+	file: __filename
 });
 
 const x = {

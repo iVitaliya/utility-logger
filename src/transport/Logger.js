@@ -16,8 +16,10 @@ module.exports = class LoggerConsole extends Stream {
 		// Expose the name of the LoggerConsole on the prototype.
 		this.name = data.name || 'Utility Logger';
 		this.eol = data.eol || os.EOL;
-		this.format = data.format ? data.format : 'dddd, hh:mm A';
-		this.date = data.date ? moment(data.date).format(data.format) : moment(Date.now()).format(data.format);
+		this.time = data.time || false;
+		this.timeFormat = data.timeFormat ? data.timeFormat : 'dddd, hh:mm A';
+		this.dateDisplay = data.dateDisplay ? moment(data.dateDisplay).format(data.timeFormat) : moment(Date.now()).format(data.timeFormat);
+		this.showFile = data.showFile || false;
 		this.file = data.file || '';
 
 		this.setMaxListeners(30);
@@ -56,16 +58,24 @@ module.exports = class LoggerConsole extends Stream {
 			}
 
 			if (process.stderr) {
-				if (this.file) {
-					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				if (this.showFile === true && this.file && this.time === true) {
+					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
+				} else if (this.showFile === true && this.file && this.time === false) {
+					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] : ${info} ${this.eol}`);
+				} else if (this.showFile === false && this.time === true) {
+					process.stderr.write(`[ ${this.name} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
 				} else {
-					process.stderr.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
+					process.stderr.write(`[ ${this.name} ] : ${info} ${this.eol}`);
 				}
 			} else if (!process.stderr && process.stdout) {
-				if (this.file) {
-					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.date} ) : ${info} ${this.eol}`);
+				if (this.showFile === true && this.file && this.time === true) {
+					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
+				} else if (this.showFile === true && this.file && this.time === false) {
+					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] : ${info} ${this.eol}`);
+				} else if (this.showFile === false && this.time === true) {
+					process.stdout.write(`[ ${this.name} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
 				} else {
-					process.stdout.write(`[ ${this.name} ] ( ${this.date} ) : ${info} ${this.eol}`);
+					process.stdout.write(`[ ${this.name} ] : ${info} ${this.eol}`);
 				}
 			}else {
 				console.error(info);
