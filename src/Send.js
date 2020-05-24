@@ -3,10 +3,7 @@ const chalk = require('chalk');
 const moment = require('moment');
 const stream = require('stream');
 
-// Files...
-const BaseLogger = require('./structures/ChildLogger.js');
-
-module.exports = class Send extends BaseLogger {
+module.exports = class Send {
     constructor(data = {}) {
         super(data);
     }
