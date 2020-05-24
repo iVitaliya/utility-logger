@@ -31,10 +31,25 @@ module.exports = class LoggerConsole extends Stream {
 
 			switch (typeof info) {
 				case 'function':
-					info = `[ Type: Function - Name: ${info.name} ]`;
+					info = `[ Type: Function - Name: ${info.name} ] ${info}`;
 					break;
 				case 'object':
-					info = `[ Type: Object - Name: ${info.variable} ] ${JSON.stringify(info)}`;
+					info = `[ Type: Object - Object Values: ${Object.entries(info).length} ] ${JSON.stringify(info)}`;
+					break;
+				case 'string':
+					info = `[ Type: String - String Length: ${info.length} chars ] ${info}`;
+					break;
+				case 'number': 
+					info = `[ Type: Number ] ${info}`;
+					break;
+				case 'bigint':
+					info = `[ Type: Bigint ] ${info}`;
+					break;
+				case 'boolean':
+					info = `[ Type: Boolean ] ${info}`;
+					break;
+				case 'symbol': 
+					info = `[ Type: Symbol ] ${info.toString()} `;
 					break;
 			}
 

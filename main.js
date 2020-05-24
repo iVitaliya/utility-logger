@@ -8,9 +8,6 @@ const Logger = new logger({
 	date: Date.now()
 });
 
-const x = {
-	value: 20,
-	id: 0
-}
+const x = Symbol('yes');
 
 Logger.send(x);

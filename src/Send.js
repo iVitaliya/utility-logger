@@ -3,7 +3,7 @@ const chalk = require('chalk');
 
 module.exports = class Send {
     constructor(data = {}) {
-        super(data);
+		super(data);
     }
 
 
