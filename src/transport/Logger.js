@@ -3,6 +3,9 @@ const os = require('os');
 const { Stream } = require('stream');
 const moment = require('moment');
 const path = require('path');
+const { inspect } = require('util');
+// Files...
+const { getLocation } = require('../Logger/getLocation.js');
 
 module.exports = class LoggerConsole extends Stream {
   /**
@@ -20,7 +23,7 @@ module.exports = class LoggerConsole extends Stream {
 		this.timeFormat = data.timeFormat ? data.timeFormat : 'dddd, hh:mm A';
 		this.dateDisplay = data.dateDisplay ? moment(data.dateDisplay).format(data.timeFormat) : moment(Date.now()).format(data.timeFormat);
 		this.showFile = data.showFile || false;
-		this.file = data.file || '';
+		this.file = getLocation(3);
 
 		this.setMaxListeners(30);
 	}
@@ -38,10 +41,10 @@ module.exports = class LoggerConsole extends Stream {
 					info = `[ Type: Function - Name: ${info.name} ] ${info}`;
 					break;
 				case 'object':
-					info = `[ Type: Object - Object Values: ${Object.entries(info).length} ] ${JSON.stringify(info)}`;
+					info = `[ Type: Object ] ${inspect(info, false, 2, true)}`;
 					break;
 				case 'string':
-					info = `[ Type: String - String Length: ${info.length} chars ] ${info}`;
+					info = `[ Type: String ] ${info}`;
 					break;
 				case 'number': 
 					info = `[ Type: Number ] ${info}`;
@@ -58,9 +61,9 @@ module.exports = class LoggerConsole extends Stream {
 			}
 
 			if (process.stderr) {
-				if (this.showFile === true && this.file && this.time === true) {
+				if (this.showFile === true && this.time === true) {
 					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
-				} else if (this.showFile === true && this.file && this.time === false) {
+				} else if (this.showFile === true && this.time === false) {
 					process.stderr.write(`[ ${this.name} - ${path.basename(this.file)} ] : ${info} ${this.eol}`);
 				} else if (this.showFile === false && this.time === true) {
 					process.stderr.write(`[ ${this.name} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
@@ -68,9 +71,9 @@ module.exports = class LoggerConsole extends Stream {
 					process.stderr.write(`[ ${this.name} ] : ${info} ${this.eol}`);
 				}
 			} else if (!process.stderr && process.stdout) {
-				if (this.showFile === true && this.file && this.time === true) {
+				if (this.showFile === true && this.time === true) {
 					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
-				} else if (this.showFile === true && this.file && this.time === false) {
+				} else if (this.showFile === true && this.time === false) {
 					process.stdout.write(`[ ${this.name} - ${path.basename(this.file)} ] : ${info} ${this.eol}`);
 				} else if (this.showFile === false && this.time === true) {
 					process.stdout.write(`[ ${this.name} ] ( ${this.dateDisplay} ) : ${info} ${this.eol}`);
