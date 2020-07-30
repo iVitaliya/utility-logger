@@ -1,5 +1,5 @@
 // Files...
-const { Logger } = require('./globalFunctions.js');
+import Logger from './globalFunctions';
 
 const x = {
 	id: 0,
