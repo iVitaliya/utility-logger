@@ -1,7 +1,7 @@
 // Packages...
-const chalk = require('chalk');
+import * as chalk from 'chalk';
 
-module.exports = class Send {
+export = class Send {
     constructor(data = {}) {
 		super(data);
     }
