@@ -1,20 +1,35 @@
 // Packages...
-const os = require('os');
-const { Stream } = require('stream');
-const moment = require('moment');
-const path = require('path');
-const { inspect } = require('util');
+import os from 'os';
+import { Stream } from 'stream';
+import moment from 'moment';
+import path from 'path';
+import { inspect } from 'util';
 // Files...
-const { getLocation } = require('../Logger/getLocation.js');
+import { getLocation } from '../Logger/getLocation';
 
-module.exports = class LoggerConsole extends Stream {
+export default class LoggerConsole extends Stream {
+	readonly name: string;
+	readonly eol: any;
+	readonly time: boolean;
+	readonly timeFormat: string;
+	readonly dateDisplay: number|string;
+	readonly showFile: boolean;
+	readonly file: any;
+
   /**
    * Constructor function for the Console transport object responsible for
    * persisting log messages and metadata to a terminal or TTY.
-   * @param {!Object} [data={}] - Options for this instance.
+   * @param {Object} [data] - Options for this instance.
    */
-	constructor(data = {}) {
-		super(data);
+	constructor(data: {
+		name: string,
+		eol: any,
+		time: boolean,
+		timeFormat: string,
+		dateDisplay: number|string,
+		showFile: boolean
+	}) {
+		super();
 
 		// Expose the name of the LoggerConsole on the prototype.
 		this.name = data.name || 'Utility Logger';

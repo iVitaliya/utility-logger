@@ -1,5 +1,5 @@
 // Files...
-const logger = require('./src/structures/ChildLogger.js');
+import logger from './src/structures/ChildLogger.js';
 
 const Logger = new logger({
 	time: true,
@@ -8,6 +8,6 @@ const Logger = new logger({
 	showFile: true
 });
 
-module.exports = {
+export = {
 	Logger: Logger
 }

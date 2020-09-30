@@ -1,18 +1,19 @@
 // Packages...
-const moment = require('moment');
-const chalk = require('chalk');
+import moment from 'moment';
+import chalk from 'chalk';
 
 // Files...
-const ParentLogger = require('../transport/Logger.js');
+import ParentLogger from '../transport/Logger';
 
-module.exports = class ChildLogger extends ParentLogger {
+export class ChildLogger extends ParentLogger {
+	name: string;
 
   /**
    * Constructor function for the Console transport object responsible for
    * persisting log messages and metadata to a terminal or TTY.
    * @param {!Object} [data={}] - Options for this instance.
    */
-	constructor(data = {}) {
+	constructor(data: object = {}) {
 		super(data);
 		this.name = data.name || 'Utility Logger';
     }

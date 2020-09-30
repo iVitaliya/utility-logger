@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/iAmMochi/utility-logger#readme",
   "dependencies": {
+    "@types/node": "^14.11.2",
     "chalk": "^4.0.0",
     "is-stream": "^2.0.0",
     "moment": "^2.26.0"
